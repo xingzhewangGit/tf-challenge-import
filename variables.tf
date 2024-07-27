@@ -13,6 +13,7 @@ variable "zone" {
   type        = string
   default     = "europe-west1-d"
 }
+
 variable "machine_type" {
   description = "machine_type"
   type        = string

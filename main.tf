@@ -32,6 +32,7 @@ provider "google" {
   zone    = var.zone
 }
 
+/*
 module "google_vm_instances" {
   source = "./modules/instances"
 
@@ -55,14 +56,14 @@ module "google_vm_instances" {
       # vm_static_ip_address = "10.128.0.3"
       tags                 = []
     }
-/*    tf-instance-155987 = {
-      machine_type         = var.machine_type
-      image                = var.image
-      vpc_network_link     = var.vpc_link
-      #      vpc_sub_network_link = ""
-    #  vm_static_ip_address = ""
-      tags                 = []
-    }*/
+    # tf-instance-155987 = {
+    #   machine_type         = var.machine_type
+    #   image                = var.image
+    #   vpc_network_link     = var.vpc_link
+    #   #      vpc_sub_network_link = ""
+    # #  vm_static_ip_address = ""
+    #   tags                 = []
+    # }
   }
 }
 
@@ -95,6 +96,7 @@ module "vpc" {
     }
   ]
 }
+
 resource "google_compute_firewall" "tf-firewall" {
   name          = "tf-firewall"
   network       = module.vpc.network_self_link
@@ -105,3 +107,4 @@ resource "google_compute_firewall" "tf-firewall" {
     ports    = ["80"]
   }
 }
+*/
