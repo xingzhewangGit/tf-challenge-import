@@ -34,3 +34,8 @@ variable "vpc_name_new" {
   type        = string
   default     = "tf-vpc-193205"
 }
+
+variable "bucket_name" {
+  description = "bucket name."
+  type        = string
+}

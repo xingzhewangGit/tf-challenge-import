@@ -65,7 +65,6 @@ module "google_vm_instances" {
     # }
   }
 }
-/*
 
 module "google_storage" {
   source     = "./modules/storage"
@@ -74,6 +73,7 @@ module "google_storage" {
   zone       = var.zone
   bucket_name       = var.bucket_name
 }
+/*
 
 module "vpc" {
   source  = "terraform-google-modules/network/google"
