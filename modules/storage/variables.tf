@@ -10,3 +10,7 @@ variable "zone" {
   description = "GCP zone for all resources."
   type        = string
 }
+variable "bucket_name" {
+  description = "bucket name."
+  type        = string
+}

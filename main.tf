@@ -32,7 +32,6 @@ provider "google" {
   zone    = var.zone
 }
 
-/*
 module "google_vm_instances" {
   source = "./modules/instances"
 
@@ -66,13 +65,14 @@ module "google_vm_instances" {
     # }
   }
 }
+/*
 
 module "google_storage" {
   source     = "./modules/storage"
   project_id = var.project_id
   region     = var.region
   zone       = var.zone
-
+  bucket_name       = var.bucket_name
 }
 
 module "vpc" {
