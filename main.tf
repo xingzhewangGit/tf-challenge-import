@@ -73,7 +73,6 @@ module "google_storage" {
   zone       = var.zone
   bucket_name       = var.bucket_name
 }
-/*
 
 module "vpc" {
   source  = "terraform-google-modules/network/google"
@@ -107,4 +106,3 @@ resource "google_compute_firewall" "tf-firewall" {
     ports    = ["80"]
   }
 }
-*/
