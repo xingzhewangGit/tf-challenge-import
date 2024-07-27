@@ -2,21 +2,28 @@
 # touch main.tf variables.tf
 # touch modules/instances/instances.tf modules/instances/outputs.tf modules/instances/variables.tf
 # touch modules/storage/storage.tf modules/storage/outputs.tf modules/storage/variables.tf
+# terraform init -upgrade
 
-# terraform import 'module.google_vm_instances.google_compute_instance.tf-instance["tf-instance-1"]' 74f89dc72755617f77e23
-# terraform import 'module.google_vm_instances.google_compute_instance.tf-instance["tf-instance-1"]' 74f89dc72755617f77e23
 
 terraform {
+  required_version = ">=0.12.6"
+
   required_providers {
     google = {
-      source  = "hashicorp/google"
-      version = "3.5.0"
+      source = "hashicorp/google"
+      version = ">= 4.85.0, < 5.0.0"
+    }
+    null = {
+      version = ">= 3.0"
+    }
+    random = {
+      version = ">= 3.0"
     }
   }
-  /*  backend "gcs" {
-    bucket  = "# REPLACE WITH YOUR BUCKET NAME"
-    prefix  = "terraform/state"
-  }*/
+#    backend "gcs" {
+#    bucket  = "tf-bucket-725597"
+#    prefix  = "terraform/state"
+#  }
 }
 
 provider "google" {
@@ -33,31 +40,32 @@ module "google_vm_instances" {
   zone       = var.zone
   vm_instances = {
     tf-instance-1 = {
-      machine_type     = ""
-      image            = ""
-      vpc_network_link = "default"
+      machine_type     = var.machine_type
+      image            = var.image
+      vpc_network_link = var.vpc_link
       #      vpc_sub_network_link = ""
-      vm_static_ip_address = ""
+      # vm_static_ip_address = "10.128.0.2"
       tags                 = []
     }
     tf-instance-2 = {
-      machine_type     = ""
-      image            = ""
-      vpc_network_link = ""
+      machine_type     = var.machine_type
+      image            = var.image
+      vpc_network_link = var.vpc_link
       #      vpc_sub_network_link = ""
-      vm_static_ip_address = ""
+      # vm_static_ip_address = "10.128.0.3"
       tags                 = []
     }
-    /*tf-instance-3 = {
-      machine_type         = ""
-      image                = ""
-      vpc_network_link     = ""
-      vm_static_ip_address = ""
+/*    tf-instance-155987 = {
+      machine_type         = var.machine_type
+      image                = var.image
+      vpc_network_link     = var.vpc_link
+      #      vpc_sub_network_link = ""
+    #  vm_static_ip_address = ""
       tags                 = []
     }*/
   }
 }
-/*
+
 module "google_storage" {
   source     = "./modules/storage"
   project_id = var.project_id
@@ -65,14 +73,13 @@ module "google_storage" {
   zone       = var.zone
 
 }
-*/
-/*
+
 module "vpc" {
   source  = "terraform-google-modules/network/google"
-  version = "~> 6.0"
+  version = "6.0.0"
 
   project_id   = var.project_id
-  network_name = "???"
+  network_name = var.vpc_name_new
   routing_mode = "GLOBAL"
 
   subnets = [
@@ -88,7 +95,6 @@ module "vpc" {
     }
   ]
 }
-
 resource "google_compute_firewall" "tf-firewall" {
   name          = "tf-firewall"
   network       = module.vpc.network_self_link
@@ -99,4 +105,3 @@ resource "google_compute_firewall" "tf-firewall" {
     ports    = ["80"]
   }
 }
-*/
