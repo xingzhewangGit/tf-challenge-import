@@ -41,28 +41,28 @@ module "google_vm_instances" {
   zone       = var.zone
   vm_instances = {
     tf-instance-1 = {
-      machine_type         = var.machine_type
-      image                = var.image
-      vpc_network_link     = var.vpc_link
-      #vpc_sub_network_link = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-04-3f993c35d2d9/regions/us-east4/subnetworks/subnet-01"
-      # vm_static_ip_address = "10.128.0.2"
+      machine_type     = var.machine_type
+      image            = var.image
+      vpc_network_link = "tf-vpc-497243"
+      vpc_sub_network_link = "subnet-01"
+      #vm_static_ip_address = "10.128.0.2"
       tags = []
     }
     tf-instance-2 = {
-      machine_type         = var.machine_type
-      image                = var.image
-      vpc_network_link     = var.vpc_link
-      #vpc_sub_network_link = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-04-3f993c35d2d9/regions/us-east4/subnetworks/subnet-02"
-      # vm_static_ip_address = "10.128.0.3"
+      machine_type     = var.machine_type
+      image            = var.image
+      vpc_network_link = "tf-vpc-497243"
+      vpc_sub_network_link = "subnet-02"
+      #vm_static_ip_address = "10.128.0.3"
       tags = []
     }
-    # tf-instance-155987 = {
-    #   machine_type         = var.machine_type
-    #   image                = var.image
-    #   vpc_network_link     = var.vpc_link
-    #   #      vpc_sub_network_link = ""
-    # #  vm_static_ip_address = ""
-    #   tags                 = []
+    # tf-instance-846496 = {
+    #   machine_type     = var.machine_type
+    #   image            = var.image
+    #   vpc_network_link = var.vpc_link
+    #   #vpc_sub_network_link = ""
+    #   #vm_static_ip_address = ""
+    #   tags = []
     # }
   }
 }
@@ -74,7 +74,6 @@ module "google_storage" {
   zone        = var.zone
   bucket_name = var.bucket_name
 }
-/*
 
 module "vpc" {
   source  = "terraform-google-modules/network/google"
@@ -98,14 +97,13 @@ module "vpc" {
   ]
 }
 
-# resource "google_compute_firewall" "tf-firewall" {
-#   name          = "tf-firewall"
-#   network       = module.vpc.network_self_link
-#   source_ranges = ["0.0.0.0/0"]
+resource "google_compute_firewall" "tf-firewall" {
+  name          = "tf-firewall"
+  network       = module.vpc.network_self_link
+  source_ranges = ["0.0.0.0/0"]
 
-#   allow {
-#     protocol = "tcp"
-#     ports    = ["80"]
-#   }
-# }
-*/
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+}

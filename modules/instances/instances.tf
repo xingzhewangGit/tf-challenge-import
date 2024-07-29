@@ -13,8 +13,8 @@ resource "google_compute_instance" "tf-instance" {
   }
   network_interface {
     network = each.value.vpc_network_link
-/*
     subnetwork = each.value.vpc_sub_network_link
+/*
     access_config {
       nat_ip = each.value.vm_static_ip_address
     }
