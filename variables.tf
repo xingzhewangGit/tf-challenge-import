@@ -28,7 +28,7 @@ variable "vpc_link" {
   type        = string
   default     = "default"
 }
-variable "vpc_name_new" {
+variable "vpc_link_new" {
   description = "vpc link"
   type        = string
   default     = "tf-vpc-764077"
