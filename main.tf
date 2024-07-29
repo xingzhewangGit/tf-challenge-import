@@ -20,10 +20,10 @@ terraform {
       version = ">= 3.0"
     }
   }
-#    backend "gcs" {
-#    bucket  = "tf-bucket-725597"
-#    prefix  = "terraform/state"
-#  }
+   backend "gcs" {
+   bucket  = "tf-bucket-718247"
+   prefix  = "terraform/state"
+ }
 }
 
 provider "google" {
@@ -42,27 +42,27 @@ module "google_vm_instances" {
     tf-instance-1 = {
       machine_type     = var.machine_type
       image            = var.image
-      vpc_network_link = var.vpc_link
-      #      vpc_sub_network_link = ""
+      vpc_network_link = "tf-vpc-764077"
+      vpc_sub_network_link = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-04-3f993c35d2d9/regions/us-east4/subnetworks/subnet-01"
       # vm_static_ip_address = "10.128.0.2"
       tags                 = []
     }
     tf-instance-2 = {
       machine_type     = var.machine_type
       image            = var.image
-      vpc_network_link = var.vpc_link
-      #      vpc_sub_network_link = ""
+      vpc_network_link = "tf-vpc-764077"
+      vpc_sub_network_link = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-04-3f993c35d2d9/regions/us-east4/subnetworks/subnet-02"
       # vm_static_ip_address = "10.128.0.3"
       tags                 = []
     }
-/*    tf-instance-155987 = {
-      machine_type         = var.machine_type
-      image                = var.image
-      vpc_network_link     = var.vpc_link
-      #      vpc_sub_network_link = ""
-    #  vm_static_ip_address = ""
-      tags                 = []
-    }*/
+    # tf-instance-155987 = {
+    #   machine_type         = var.machine_type
+    #   image                = var.image
+    #   vpc_network_link     = var.vpc_link
+    #   #      vpc_sub_network_link = ""
+    # #  vm_static_ip_address = ""
+    #   tags                 = []
+    # }
   }
 }
 
@@ -71,7 +71,7 @@ module "google_storage" {
   project_id = var.project_id
   region     = var.region
   zone       = var.zone
-
+  bucket_name       = var.bucket_name
 }
 
 module "vpc" {
@@ -95,13 +95,14 @@ module "vpc" {
     }
   ]
 }
-resource "google_compute_firewall" "tf-firewall" {
-  name          = "tf-firewall"
-  network       = module.vpc.network_self_link
-  source_ranges = ["0.0.0.0/0"]
 
-  allow {
-    protocol = "tcp"
-    ports    = ["80"]
-  }
-}
+# resource "google_compute_firewall" "tf-firewall" {
+#   name          = "tf-firewall"
+#   network       = module.vpc.network_self_link
+#   source_ranges = ["0.0.0.0/0"]
+
+#   allow {
+#     protocol = "tcp"
+#     ports    = ["80"]
+#   }
+# }
