@@ -21,10 +21,10 @@ terraform {
       version = ">= 3.0"
     }
   }
-  backend "gcs" {
-    bucket = "tf-bucket-718247"
-    prefix = "terraform/state"
-  }
+  # backend "gcs" {
+  #   bucket = var.bucket_name
+  #   prefix = "terraform/state"
+  # }
 }
 
 provider "google" {
@@ -43,16 +43,16 @@ module "google_vm_instances" {
     tf-instance-1 = {
       machine_type         = var.machine_type
       image                = var.image
-      vpc_network_link     = "tf-vpc-764077"
-      vpc_sub_network_link = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-04-3f993c35d2d9/regions/us-east4/subnetworks/subnet-01"
+      vpc_network_link     = var.vpc_link
+      #vpc_sub_network_link = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-04-3f993c35d2d9/regions/us-east4/subnetworks/subnet-01"
       # vm_static_ip_address = "10.128.0.2"
       tags = []
     }
     tf-instance-2 = {
       machine_type         = var.machine_type
       image                = var.image
-      vpc_network_link     = "tf-vpc-764077"
-      vpc_sub_network_link = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-04-3f993c35d2d9/regions/us-east4/subnetworks/subnet-02"
+      vpc_network_link     = var.vpc_link
+      #vpc_sub_network_link = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-04-3f993c35d2d9/regions/us-east4/subnetworks/subnet-02"
       # vm_static_ip_address = "10.128.0.3"
       tags = []
     }
