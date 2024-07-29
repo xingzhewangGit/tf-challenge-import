@@ -1,17 +1,17 @@
 variable "project_id" {
   description = "id of the project."
   type        = string
-  default     = "qwiklabs-gcp-01-c9019aac6b03"
+  default     = "qwiklabs-gcp-04-3f993c35d2d9"
 }
 variable "region" {
   description = "GCP region for all resources."
   type        = string
-  default     = "europe-west1"
+  default     = "us-east4"
 }
 variable "zone" {
   description = "GCP zone for all resources."
   type        = string
-  default     = "europe-west1-d"
+  default     = "us-east4-c"
 }
 variable "machine_type" {
   description = "machine_type"
@@ -28,8 +28,13 @@ variable "vpc_link" {
   type        = string
   default     = "default"
 }
-variable "vpc_name_new" {
+variable "vpc_link_new" {
   description = "vpc link"
   type        = string
-  default     = "tf-vpc-193205"
+  default     = "tf-vpc-764077"
+}
+variable "bucket_name" {
+  description = "bucket name"
+  type        = string
+  default     = "tf-bucket-718247"
 }
