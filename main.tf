@@ -3,6 +3,7 @@
 # touch modules/instances/instances.tf modules/instances/outputs.tf modules/instances/variables.tf
 # touch modules/storage/storage.tf modules/storage/outputs.tf modules/storage/variables.tf
 # terraform init -upgrade
+# terraform import 'module.google_vm_instances.google_compute_instance.tf-instance["tf-instance-1"]' qwiklabs-gcp-04-3f993c35d2d9/us-east4-c/2144187439781602089
 
 
 terraform {
